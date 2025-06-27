@@ -1,0 +1,63 @@
+<Window x:Class="CybersecurityAwarenessBot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="Cybersecurity Awareness Bot" Height="500" Width="700"
+        Background="#f0f0f0" Foreground="Black">
+
+    <Window.Resources>
+        <!-- Simple Button Style -->
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+
+        <!-- Simple TextBox Style -->
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Background" Value="#3a3a3a"/>
+            <Setter Property="Foreground" Value="white"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Chat Display (RichTextBox for color support) -->
+        <RichTextBox Name="ChatDisplay" Grid.Row="0" Margin="0,0,0,10"
+                     IsReadOnly="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Background="White" Foreground="Black" />
+
+        <!-- User Input -->
+        <TextBox Name="UserInput" Grid.Row="1" Height="30"
+                 Text="Type your message here..."
+                 Foreground="white"
+                 GotFocus="UserInput_GotFocus"
+                 LostFocus="UserInput_LostFocus" />
+
+        <!-- Buttons -->
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left">
+            <Button Content="Send" Click="SendButton_Click"/>
+            <Button Content="Start Quiz" Click="StartQuiz_Click"/>
+            <Button Content="View Log" Click="ViewActivityLog_Click"/>
+        </StackPanel>
+
+        <!-- Reminder -->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" Margin="0,10,0,0">
+            <Label Content="Reminder Date:" VerticalAlignment="Center"/>
+            <DatePicker Name="ReminderDatePicker"
+                        SelectedDate="{x:Static sys:DateTime.Now}"
+                        Margin="5,0,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
